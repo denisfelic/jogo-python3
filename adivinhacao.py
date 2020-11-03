@@ -27,25 +27,25 @@ def jogar():
     numero_magico = round(random.randrange(1, 101))
     numero_de_chances_restantes = carrega_nivel()
 
-    print(f"Gerarei um número aleatório de 0-100, você tem {numero_de_chances_restantes + 1} chances.")
+    print(f"Gerei um número aleatório entre 0 ~ 100, você tem {numero_de_chances_restantes + 1} chances.")
     print("Boa Sorte!")
     print("************************************")
 
-    # se palpite for +- >=10 do numero magico : quente
-    # se palpite for +- >=20 do numero magico : morno
-    # se palpite for +- >=30 q numero magico : frio
-    # se nenhuma das opções: passou longe
+    # se palpite for >=10 || <=10 do numero magico : quente
+    # se palpite for  >=20 || <=20 do numero magico : morno
+    # se palpite for >=30 || <=20 q numero magico : frio
+    # se nenhuma das opções, então resposta é igual á: passou longe
 
     def dica_proximidade_palpite(palpite_jogador):
-        aproximidade_palpite = abs(numero_magico - palpite_jogador)  # abs - valor absoluto
-        palpite_positivo(aproximidade_palpite)
+        proximidade_palpite = abs(numero_magico - palpite_jogador)  # abs - valor absoluto
+        exibe_proximidade_palpite(proximidade_palpite)
 
-    def palpite_positivo(aproximidade_palpite):
-        if aproximidade_palpite <= 10:
+    def exibe_proximidade_palpite(proximidade_palpite):
+        if proximidade_palpite <= 10:
             print("palpite quente")
-        elif aproximidade_palpite <= 20:
+        elif proximidade_palpite <= 20:
             print("palpite morno")
-        elif aproximidade_palpite <= 30:
+        elif proximidade_palpite <= 30:
             print("palpite frio")
         else:
             print("passou longe")
@@ -54,14 +54,14 @@ def jogar():
         palpite = int(input("Digite seu palpite: "))
 
         if palpite < 0 or palpite > 100:
-            print('Digite um número entre 0-100, tente novamente')
+            print('Digite um número entre 0 e 100')
             continue
 
         dica_proximidade_palpite(palpite)
         acertou = palpite == numero_magico
 
         if acertou:
-            print("Parabens!!!! você acertou, \"{}\" é o número mágico!!!".format(numero_magico))
+            print("Parabéns!!!! você acertou, \"{}\" é o número mágico!!!".format(numero_magico))
             break
         else:
             if numero_de_chances_restantes > 0:
